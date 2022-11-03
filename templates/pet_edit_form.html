@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="callout">
+    <h1 class="text-center">Edit a Pet!</h1>
+</div>
+
+
+<div class="card container alert alert-info" style="width: 22rem;">
+    <img src="{{pet.photo_url}}" class="card-img-top">
+    <div class="card-body text-center">
+        <h4 class="card-title">{{pet.name}} the {{pet.species}}!</h4>
+        {% if pet.age %}<h4>They are {{ pet.age }} years old.</h4>{% endif %}
+    </div>
+</div>
+
+<div class="justify-content-center row alert alert-secondary">
+    <div class="col-10 m-2">
+        <form id="pet-add-form" method="POST">
+            {{ form.hidden_tag() }}
+            <!--add type=hidden form fields -->
+            
+            <div class="form-group p-2">
+                {{ form.photo_url.label }}
+                {{ form.photo_url(class_="form-control p-2") }}
+            </div>
+
+            <div class="form-group p-2">
+                {{ form.notes.label }}
+                {{ form.notes(class_="form-control p-2") }}
+            </div>
+
+            <div class="form-group p-2">
+                {{ form.available.label }}
+                {{ form.available }}
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-success btn-md" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

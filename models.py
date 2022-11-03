@@ -8,7 +8,7 @@ def connect_db(app):
     db.init_app(app)
 
 
-default_image = "https://media.istockphoto.com/vectors/adopt-a-pet-concept-vector-illustration-vector-id1286489291?k=20&m=1286489291&s=612x612&w=0&h=EfiS8XyUokeo16ml6_BbFS8XdunkEttuPauHhZEy5b0="
+default_image = "https://img.freepik.com/premium-vector/adopt-pet-little-dog-cat-with-adpot-me-lettering-illustration_24640-68872.jpg?w=826"
 
 class Pet(db.Model):
     """model for pets for app"""
@@ -30,5 +30,10 @@ class Pet(db.Model):
         p = self
         return f"<Pet name: {p.name} | species: {p.species} | photo_url: {p.photo_url} | age: {p.age} | notes: {p.notes} | available: {p.availble} >"
 
+    @classmethod
+    def add(self, name, species, photo_url, age, notes):
+        """class method to make adding pet easier"""
+        pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes)
+        db.session.add(pet)
+        db.session.commit()
 
-    

@@ -2,6 +2,30 @@
 
 {% block content %}
 
-<h1 class="text-center">this is a test</h1>
+<div class="callout">
+    <h1 class="text-center">Here are our pets!</h1>
+</div>
 
+<div class="row justify-content-left">
+    {% for pet in pets %}
+    <div class="col-3">
+        <div class="card container alert alert-info text-center" style="width: 15rem;">
+            <img  src="{{pet.photo_url}}" class="card-img-top">
+            <div class="card-body">
+                <h4 class="card-title"><a href="/{{ pet.id }}">{{pet.name}}</a> the {{pet.species}} -</h4>
+                <h4>{% if pet.available %}<b>is available!</b>{% else %}<b>has been adopted!</b>{% endif %}</h4>
+                
+            </div>
+
+        </div>
+    </div>
+    {% else %}
+    <div class="callout-sad">
+        <h1 class="text-center">No pets to adopt yet! :(</h1>
+    </div>
+    {% endfor %}
+</div>
+<div class="text-center">
+    <a class="btn btn-primary" href="/add">Add a Pet</a>
+</div>
 {% endblock %}

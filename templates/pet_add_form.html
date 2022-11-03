@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="callout">
+    <h1 class="text-center">Add a Pet!</h1>
+</div>
+
+<div class="justify-content-center row alert alert-secondary">
+    <div class="col-10 m-2">
+        <form id="pet-add-form" method="POST">
+            {{ form.hidden_tag() }}
+            <!--add type=hidden form fields -->
+
+            {% for field in form
+            if field.widget.input_type != 'hidden' %}
+
+            <div class="form-group p-2">
+                {{ field.label }}
+                {{ field(class_="form-control p-2") }}
+
+                {% for error in field.errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+
+            {% endfor %}
+            <div class="text-center">
+                <button class="btn btn-success btn-md" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
